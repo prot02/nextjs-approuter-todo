@@ -1,14 +1,14 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "ログインページ",
   description: "ログインページです。",
 };
 
-export default function Signin() {
+export default function SigninLayout({children}: Readonly<{children: React.ReactNode;}>) {
   return (
     <div>
-      ログイン画面
+      {children}
     </div>
   );
 }
