@@ -3,9 +3,11 @@
 import { supabase } from 'src/utils/supabase'
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useAuth } from '@/hooks/index';
 
 
 export default function Signin() {
+  const auth = useAuth()
   const router = useRouter()
   const [user, setUser] = useState(null);
 
@@ -36,7 +38,7 @@ export default function Signin() {
 
 
   useEffect(()=>{
-    console.log(user)
+    auth.signin()
   },[user])
 
   const signInWithGoogle = async () => {
@@ -56,11 +58,15 @@ export default function Signin() {
 
   }
 
+  const handleOnClick = () => {
+    
+  }
+
   return (
     <div>
       <div>ログイン画面</div>
       <button onClick={signInWithGoogle}>Sign in with Google</button>
-
+      <button onClick={handleOnClick}>カスタムHookテスト</button>
     </div>
     
   );
