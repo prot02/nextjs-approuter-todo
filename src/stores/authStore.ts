@@ -1,9 +1,14 @@
 import {create} from 'zustand'
-import {AuthType} from '@/schemas/index'
+import {AuthUserType} from '@/schemas/index'
 
+type UseAuthStoreType = {
+  auth:AuthUserType
+  signin: () => void
+  signout: (user:AuthUserType) => void
+}
 
-export const useAuthStore = create<AuthType>((set) => ({
-  user:undefined,
-  signin: (user:AuthType) => set(user),
+export const useAuthStore = create<UseAuthStoreType>((set) => ({
+  auth:undefined,
+  signin: set((auth) => (auth)),
   signout: () => set(null)
 }))
