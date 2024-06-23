@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import {AuthUserType} from '@/schemas/index'
+import {AuthUserType} from '@/schemas'
 
 type UseAuthStoreType = {
   auth:AuthUserType
