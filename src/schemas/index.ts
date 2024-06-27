@@ -1,1 +1,1 @@
-export type {AuthUserType} from './authScema'
+export type { AuthUserType } from './authScema';

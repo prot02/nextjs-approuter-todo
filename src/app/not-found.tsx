@@ -1,7 +1,3 @@
 export default function NotFound() {
-  return (
-    <div>
-      データがありません
-    </div>
-  );
+	return <div>データがありません</div>;
 }

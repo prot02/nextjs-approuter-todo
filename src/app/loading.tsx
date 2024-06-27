@@ -1,7 +1,3 @@
 export default function Loading() {
-  return (
-    <div>
-      ロード中
-    </div>
-  );
+	return <div>ロード中</div>;
 }

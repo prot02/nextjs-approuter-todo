@@ -1,9 +1,9 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const AuthUserSchema = z.object({
-  id:z.string(),
-  name:z.string(),
-  email:z.string().email(),
-})
+	id: z.string(),
+	name: z.string(),
+	email: z.string().email(),
+});
 
-export type AuthUserType = z.infer<typeof AuthUserSchema>
+export type AuthUserType = z.infer<typeof AuthUserSchema>;

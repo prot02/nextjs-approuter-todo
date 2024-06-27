@@ -1,21 +1,18 @@
-import { Inter } from "next/font/google";
-import "src/style/globals.css";
+import { Inter } from 'next/font/google';
+import 'src/style/globals.css';
 
-const inter = Inter({ subsets: ["latin"] });
-
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="ja">
-      <body className={inter.className}>
-        <main>
-          {children}
-        </main>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="ja">
+			<body className={inter.className}>
+				<main>{children}</main>
+			</body>
+		</html>
+	);
 }
