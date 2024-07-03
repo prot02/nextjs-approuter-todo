@@ -1,0 +1,17 @@
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 100vh;
+  padding: 20px;
+  border-right: 1px solid theme('colors.gray.02');
+  background-color: theme('colors.white.01');
+
+  &>.title{
+    font-size: theme('fontSize.2xl');
+    font-weight: bold;
+  }
+  &>.top{
+    flex-grow: 1;
+  }
+}

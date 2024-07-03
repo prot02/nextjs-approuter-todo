@@ -1,8 +1,8 @@
-import classnames from "classnames";
+import classNames from "classNames";
 import style from "./style.module.scss"
 
 const Card: React.FCX = ({ children, className }) => {
-	return <div className={classnames(style.card, className)}>
+	return <div className={classNames(style.card, className)}>
 		{children}
 	</div>;
 };

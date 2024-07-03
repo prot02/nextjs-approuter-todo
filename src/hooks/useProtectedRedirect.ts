@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAuthStore } from '@/stores';
 import { useRouter } from 'next/navigation';
+import { PublicHomePage } from '@/constants/config'
 
 export const useProtectedRedirect = () => {
 	const router = useRouter();
@@ -8,7 +9,7 @@ export const useProtectedRedirect = () => {
 
 	useEffect(() => {
 		if (isSignout) {
-			router.push('/signin');
+			router.push(PublicHomePage);
 		}
 	}, [isSignout, router]);
 };

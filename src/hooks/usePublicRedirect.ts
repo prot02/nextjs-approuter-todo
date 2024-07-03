@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAuthStore } from '@/stores';
 import { useRouter } from 'next/navigation';
+import { ProtectedHomePage } from '@/constants/config'
 
 export const usePublicRedirect = () => {
 	const router = useRouter();
@@ -8,7 +9,7 @@ export const usePublicRedirect = () => {
 
 	useEffect(() => {
 		if (isSignin) {
-			router.push('/board');
+			router.push(ProtectedHomePage);
 		}
 	}, [isSignin, router]);
 };

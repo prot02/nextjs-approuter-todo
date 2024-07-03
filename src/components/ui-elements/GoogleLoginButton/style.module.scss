@@ -1,0 +1,17 @@
+.google_login_button{
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  padding:8px;
+  border: 1px solid theme('colors.gray.02');
+  border-radius: 4px;
+  cursor: pointer;
+
+  &>.icon{
+    width: 24px;
+    margin-right: 8px;
+  }
+  &>.text{
+    
+  }
+}
