@@ -19,5 +19,5 @@ module.exports = {
 		// "prettier/@typescript-eslint", // Prettierでカバーできるルールを無効化
 	],
 	rules: {},
-	ignorePatterns:[]
+	ignorePatterns: ['tailwind.config.ts', 'next.config.mjs'],
 };

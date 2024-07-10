@@ -1,8 +1,3 @@
-// 'use client';
 export default function Bord() {
-	return (
-		<div>
-			ボードです。
-		</div>
-	);
+	return <div>ボードです。</div>;
 }

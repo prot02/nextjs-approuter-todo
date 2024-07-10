@@ -15,6 +15,7 @@ export const useAuthCheck = () => {
 					id: session.user.id,
 					name: session.user.user_metadata.name,
 					email: session.user.email,
+					icon_url: session.user.user_metadata.picture,
 				});
 			} else {
 				storeSignout();

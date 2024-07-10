@@ -1,7 +1,3 @@
-import GoogleLoginButton from "./GoogleLoginButton";
-import Sidebar from "./Sidebar";
+import GoogleButton from './GoogleButton';
 
-export {
-  GoogleLoginButton,
-  Sidebar
-}
+export { GoogleButton };

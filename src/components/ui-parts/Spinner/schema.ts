@@ -1,3 +1,3 @@
 export type SpinnerType = {
-  size?: 's' | 'm';
-}
+	size?: 's' | 'm';
+};

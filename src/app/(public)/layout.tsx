@@ -1,7 +1,7 @@
 'use client';
 import { useAuthStore } from '@/stores';
 import { useAuthCheck, usePublicRedirect } from '@/hooks';
-import {Spinner} from '@/components/ui-parts';
+import { Spinner } from '@/components/ui-parts';
 
 export default function PublicLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	useAuthCheck();
@@ -9,15 +9,15 @@ export default function PublicLayout({ children }: Readonly<{ children: React.Re
 
 	const isLoading = useAuthStore((state) => state.isLoading());
 
-	return(
+	return (
 		<div>
 			{isLoading ? (
-				<div className='h-screen flex items-center justify-center'>
-					<Spinner className='w-[48px]'/>
-				</div>):(
-					children
-				)
-			}
+				<div className="h-screen flex items-center justify-center">
+					<Spinner className="w-[48px]" />
+				</div>
+			) : (
+				children
+			)}
 		</div>
-	)
+	);
 }

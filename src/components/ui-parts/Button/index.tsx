@@ -1,9 +1,6 @@
-import { FCX } from "react";
+import { FCX } from 'react';
 
 const Button: FCX = () => {
-  return (
-  <div >
-  
-  </div>
-)}
+	return <div></div>;
+};
 export default Button;

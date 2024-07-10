@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { supabase } from 'src/utils/supabase';
-import { PublicHomePage } from '@/constants/config'
+import { PublicHomePage } from '@/constants/config';
 
 export const useAuth = () => {
 	const signin = useCallback(async () => {

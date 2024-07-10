@@ -1,3 +1,6 @@
 .custom_image{
-  position: relative !important;
+  
+  &>.image{
+    position: relative !important;
+  }
 }

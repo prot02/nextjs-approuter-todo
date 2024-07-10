@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAuthStore } from '@/stores';
 import { useRouter } from 'next/navigation';
-import { PublicHomePage } from '@/constants/config'
+import { PublicHomePage } from '@/constants/config';
 
 export const useProtectedRedirect = () => {
 	const router = useRouter();
