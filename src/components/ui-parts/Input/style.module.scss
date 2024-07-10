@@ -1,0 +1,35 @@
+.input_wrap {
+	position: relative;
+	display: inline-flex;
+	width: 100%;
+
+	& > .input {
+		border-radius: 6px;
+		border: 1px solid theme("colors.gray.02");
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		width: 100%;
+		background: #fff;
+		font-size: theme("fontSize.m");
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		-moz-appearance: textfield;
+
+		height: 36px;
+		padding: 8px 12px;
+
+		&:focus {
+			outline: 0;
+			border: 2px solid theme("colors.primary");
+		}
+
+		&::placeholder {
+			color: theme("colors.gray.02");
+		}
+	}
+}
