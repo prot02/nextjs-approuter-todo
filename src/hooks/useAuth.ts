@@ -1,19 +1,21 @@
 import { useCallback } from 'react';
-import { createClient } from '@/utils/supabase/client'
+import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import { PublicHomePage } from 'src/constants/config';
 
 export const useAuth = () => {
-	const router = useRouter()
+	const router = useRouter();
 
 	const signin = useCallback(async () => {
-		const supabase = createClient()
+		const supabase = createClient();
 		try {
 			const { error } = await supabase.auth.signInWithOAuth({
 				provider: 'google',
 				options: {
-					redirectTo: `${window.location.origin}/api/auth/callback`,
-					// redirectTo:null
+					redirectTo: `${window.location.origin}/api/auth/google/callback`,
+					queryParams: {
+						prompt: 'select_account',
+					},
 				},
 			});
 			if (error) throw Error;
@@ -23,12 +25,11 @@ export const useAuth = () => {
 		}
 	}, []);
 
-	
 	const signout = useCallback(async () => {
 		try {
-			const supabase = createClient()
+			const supabase = createClient();
 			await supabase.auth.signOut();
-			await router.push(`${window.location.origin}${PublicHomePage}`)
+			await router.push(`${window.location.origin}${PublicHomePage}`);
 		} catch {
 			console.log('ログアウトエラー');
 		}

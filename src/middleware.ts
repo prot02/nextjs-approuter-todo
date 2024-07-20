@@ -4,7 +4,6 @@ import { updateSession } from '@/utils/supabase/middleware'
 
 
 export async function middleware(request: NextRequest) {
-
   // 認証が不要なページ一覧
   const pathname = request.nextUrl.pathname
   const publicRoutes = [
@@ -16,9 +15,11 @@ export async function middleware(request: NextRequest) {
     "/profile",
   ]
 
+  // ルートにアクセスされた場合はログインページへ遷移
+  if(pathname === '/') return NextResponse.redirect(new URL(ProtectedHomePage, request.url));
+
   const {supabase, response} = await updateSession(request)
   const { data: { user }} = await supabase.auth.getUser()
-
 
   // 認証済みの状態で認証不要ページに行った場合のリダイレクト
   if(user && publicRoutes.includes(pathname)){
