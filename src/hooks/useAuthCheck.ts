@@ -1,5 +1,7 @@
+// TODO:使っていないため最後に消す
+"use client"
 import { useEffect } from 'react';
-import { supabase } from 'src/utils/supabase';
+import { createClient } from 'src/utils/supabase/server';
 import { useAuthStore } from '@/stores';
 
 export const useAuthCheck = () => {
@@ -9,7 +11,7 @@ export const useAuthCheck = () => {
 	useEffect(() => {
 		const {
 			data: { subscription },
-		} = supabase.auth.onAuthStateChange((event, session) => {
+		} = createClient().auth.onAuthStateChange((event, session) => {
 			if (session) {
 				storeSignin({
 					id: session.user.id,

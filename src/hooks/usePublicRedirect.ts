@@ -1,3 +1,5 @@
+// TODO:使っていないため最後に消す
+"use client"
 import { useEffect } from 'react';
 import { useAuthStore } from '@/stores';
 import { useRouter } from 'next/navigation';
