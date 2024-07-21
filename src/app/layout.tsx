@@ -1,7 +1,6 @@
-import { Inter } from 'next/font/google';
 import 'src/style/globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
+import { notoSansJP } from '@/style/fonts';
+import classNames from 'classNames';
 
 export default function RootLayout({
 	children,
@@ -10,7 +9,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ja">
-			<body className={inter.className}>
+			<body className={classNames(notoSansJP.variable)}>
 				<main>{children}</main>
 			</body>
 		</html>

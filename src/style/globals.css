@@ -9,4 +9,5 @@ body {
 	background-color: theme("colors.gray.01");
 	font-size: theme("fontSize.m");
 	line-height: 1.7;
+	font-family: var(--font-notoSansJP);
 }
