@@ -3,27 +3,12 @@ import { AuthUserType } from '@/schemas';
 
 type UseAuthStoreType = {
 	auth: AuthUserType | undefined;
-	signin: (auth: AuthUserType) => void;
-	signout: () => void;
-	isLoading: () => boolean;
-	isSignout: () => boolean;
-	isSignin: () => boolean;
+	setAuth: (auth: AuthUserType) => void;
+	unsetAuth: () => void;
 };
 
-export const useAuthStore = create<UseAuthStoreType>((set, get) => ({
+export const useAuthStore = create<UseAuthStoreType>((set) => ({
 	auth: undefined,
-	signin: (auth) => set(() => ({ auth: auth })),
-	signout: () => set(() => ({ auth: null })),
-	isLoading: () => {
-		const { auth } = get();
-		return auth === undefined;
-	},
-	isSignout: () => {
-		const { auth } = get();
-		return auth === null;
-	},
-	isSignin: () => {
-		const { isLoading, isSignout } = get();
-		return !isLoading() && !isSignout();
-	},
+	setAuth: (auth) => set(() => ({ auth: auth })),
+	unsetAuth: () => set(() => ({ auth: null })),
 }));

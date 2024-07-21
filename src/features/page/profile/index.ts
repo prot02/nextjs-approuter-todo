@@ -1,3 +1,3 @@
-import GoogleLoginButton from './components/GoogleLoginButton';
+import ProfileEdit from './components/ProfileEdit';
 
-export { GoogleLoginButton };
+export { ProfileEdit };

@@ -1,34 +1,24 @@
-// 'use client';
-// import { useAuthStore } from '@/stores';
-// import { useAuthCheck, useProtectedRedirect } from '@/hooks';
-// import { Spinner } from '@/components/ui-parts';
+'use client';
 import { Header } from '@/features/common';
-// import { createClient } from '@/utils/supabase/server';
-// import { useAuthStore } from 'src/stores';
+import { useAuthSet } from '@/hooks';
+import { useAuthStore } from '@/stores';
+import { Spinner } from '@/components/ui-parts';
 
-export default async function ProtectedLayout({
-	children,
-}: Readonly<{ children: React.ReactNode }>) {
-	// useAuthCheck();
-	// useProtectedRedirect();
-	// const isLoading = useAuthStore((state) => state.isLoading());
-
-	// const storeSignin = useAuthStore((state) => state.signin);
-	// const supabase = createClient();
-	// const {
-	// 	data: { session },
-	// } = await supabase.auth.getSession();
-	// storeSignin({
-	// 	id: session.user.id,
-	// 	name: session.user.user_metadata.name,
-	// 	email: session.user.email,
-	// 	icon_url: session.user.user_metadata.picture,
-	// });
-
+export default function ProtectedLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+	const auth = useAuthStore((state) => state.auth);
+	useAuthSet();
 	return (
-		<div>
-			<Header />
-			<div className="p-[20px]">{children}</div>
-		</div>
+		<>
+			{auth ? (
+				<>
+					<Header />
+					<div className="p-[20px]">{children}</div>
+				</>
+			) : (
+				<div className="h-screen flex items-center justify-center">
+					<Spinner className="w-[48px]" />
+				</div>
+			)}
+		</>
 	);
 }
