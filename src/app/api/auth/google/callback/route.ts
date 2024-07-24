@@ -1,14 +1,14 @@
-import { createClient } from "@/utils/supabase/server"
-import { NextResponse } from "next/server"
-import { ProtectedHomePage } from "src/constants/config"
+import { createClient } from '@/lib/supabase/server';
+import { NextResponse } from 'next/server';
+import { ProtectedHomePage } from 'src/constants/config';
 
 export async function GET(request: Request) {
-  const requestUrl = new URL(request.url)
-  const code = requestUrl.searchParams.get("code")
+	const requestUrl = new URL(request.url);
+	const code = requestUrl.searchParams.get('code');
 
-  if (code) {
-    const supabase = createClient()
-    await supabase.auth.exchangeCodeForSession(code)
-  }
-  return NextResponse.redirect(`${requestUrl.origin}${ProtectedHomePage}`)
+	if (code) {
+		const supabase = createClient();
+		await supabase.auth.exchangeCodeForSession(code);
+	}
+	return NextResponse.redirect(`${requestUrl.origin}${ProtectedHomePage}`);
 }

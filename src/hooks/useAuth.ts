@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { createClient } from '@/utils/supabase/client';
+import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { PublicHomePage } from 'src/constants/config';
 

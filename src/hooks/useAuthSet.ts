@@ -1,6 +1,6 @@
 import { useAuthStore } from '@/stores';
 import { useEffect } from 'react';
-import { createClient } from '@/utils/supabase/client';
+import { createClient } from '@/lib/supabase/client';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 export const useAuthSet = () => {
