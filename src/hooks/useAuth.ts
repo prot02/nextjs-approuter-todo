@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
-import { PublicHomePage } from 'src/constants/config';
+import { PUBLIC_HOME } from 'src/constants/config';
 
 export const useAuth = () => {
 	const router = useRouter();
@@ -29,7 +29,7 @@ export const useAuth = () => {
 		try {
 			const supabase = createClient();
 			await supabase.auth.signOut();
-			await router.push(`${window.location.origin}${PublicHomePage}`);
+			await router.push(PUBLIC_HOME);
 		} catch {
 			console.log('ログアウトエラー');
 		}

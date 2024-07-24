@@ -4,5 +4,6 @@ import CustomImaga from './CustomImage';
 import SocialIcon from './SocialIcon';
 import Spinner from './Spinner';
 import Input from './Input';
+import Label from './Label';
 
-export { Button, Card, CustomImaga, SocialIcon, Spinner, Input };
+export { Button, Card, CustomImaga, SocialIcon, Spinner, Input, Label };

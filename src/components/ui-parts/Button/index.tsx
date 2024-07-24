@@ -3,11 +3,21 @@ import style from './style.module.scss';
 import { ButtonType } from './schema';
 import classNames from 'classNames';
 
-const Button: FCX<ButtonType> = ({ className, text, onClick }) => {
+const Button: FCX<ButtonType> = ({
+	Element = 'label',
+	buttonType = 'button',
+	className,
+	text,
+	onClick,
+}) => {
 	return (
-		<div className={classNames(style.btn, className)} onClick={onClick}>
+		<Element
+			className={classNames(style.btn, className)}
+			onClick={onClick}
+			type={Element === 'button' ? buttonType : undefined}
+		>
 			{text}
-		</div>
+		</Element>
 	);
 };
 export default Button;

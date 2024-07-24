@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
-import { ProtectedHomePage } from 'src/constants/config';
+import { PROTECTED_HOME } from 'src/constants/config';
 
 export async function GET(request: Request) {
 	const requestUrl = new URL(request.url);
@@ -9,6 +9,22 @@ export async function GET(request: Request) {
 	if (code) {
 		const supabase = createClient();
 		await supabase.auth.exchangeCodeForSession(code);
+
+		const sessionUser = await supabase.auth.getUser();
+		const userId = sessionUser.data.user.id;
+		const userName = sessionUser.data.user.user_metadata.name;
+		const { error } = await supabase.from('users').select('*').eq('id', userId).single();
+
+		// レコードが存在しない場合追加
+		if (error && error.code === 'PGRST116') {
+			await supabase.from('users').insert([
+				{
+					id: userId,
+					name: userName,
+				},
+			]);
+		}
 	}
-	return NextResponse.redirect(`${requestUrl.origin}${ProtectedHomePage}`);
+
+	return NextResponse.redirect(`${requestUrl.origin}${PROTECTED_HOME}`);
 }

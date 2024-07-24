@@ -1,2 +1,2 @@
-export const PublicHomePage = '/signin';
-export const ProtectedHomePage = '/board';
+export const PUBLIC_HOME = '/signin';
+export const PROTECTED_HOME = '/board';
