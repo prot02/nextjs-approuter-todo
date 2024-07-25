@@ -7,6 +7,7 @@ const Input: FCX<InputType> = ({
 	className,
 	type = 'text',
 	name,
+	defaultValue,
 	value,
 	placeholder,
 	onChange,
@@ -17,6 +18,7 @@ const Input: FCX<InputType> = ({
 			<input
 				type={type}
 				name={name}
+				defaultValue={defaultValue}
 				value={value}
 				placeholder={placeholder}
 				className={classNames(style.input)}

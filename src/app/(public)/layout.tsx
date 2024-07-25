@@ -1,7 +1,5 @@
-'use client';
-import { useAuthUnset } from '@/hooks';
+import { AuthStoreUnset } from '@/features/common';
 
 export default function PublicLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-	useAuthUnset();
-	return <div>{children}</div>;
+	return <AuthStoreUnset>{children}</AuthStoreUnset>;
 }

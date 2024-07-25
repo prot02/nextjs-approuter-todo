@@ -1,13 +1,16 @@
+'use client';
+
 import { FCX } from 'react';
 import classNames from 'classNames';
 import style from './style.module.scss';
 import { CustomImaga } from '@/components/ui-parts';
 import { useAuthStore } from '@/stores';
 import Link from 'next/link';
-import Signout from './Signout';
+import { useAuth } from '@/hooks';
 
 const Header: FCX = ({ className }) => {
 	const auth = useAuthStore((state) => state.auth);
+	const { signout } = useAuth();
 
 	return (
 		<div className={classNames(className, style.header)}>
@@ -29,7 +32,9 @@ const Header: FCX = ({ className }) => {
 							</Link>
 						</li>
 						<li>
-							<Signout className={style.item} />
+							<div onClick={signout} className={style.item}>
+								ログアウト
+							</div>
 						</li>
 					</ul>
 				</div>
