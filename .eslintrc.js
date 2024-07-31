@@ -13,11 +13,12 @@ module.exports = {
 	},
 	plugins: ['@typescript-eslint'], // TypeScriptプラグインのルールを適用
 	extends: [
-		'plugin:@typescript-eslint/recommended', // 型チェックが不要なルールを適用
-		'next/core-web-vitals',
-		'prettier',
-		// "prettier/@typescript-eslint", // Prettierでカバーできるルールを無効化
-	],
+        "plugin:@typescript-eslint/recommended",
+        "next/core-web-vitals",
+        "prettier",
+        "plugin:storybook/recommended",
+        "plugin:storybook/recommended"
+    ],
 	rules: {},
 	ignorePatterns: ['tailwind.config.ts', 'next.config.mjs'],
 };
