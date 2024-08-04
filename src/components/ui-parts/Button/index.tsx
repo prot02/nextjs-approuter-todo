@@ -1,7 +1,7 @@
 import { FCX } from 'react';
 import style from './style.module.scss';
 import { ButtonType } from './schema';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 const Button: FCX<ButtonType> = ({
 	Element = 'label',

@@ -1,6 +1,6 @@
 import 'src/style/globals.css';
 import { notoSansJP } from '@/style/fonts';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 export default function RootLayout({
 	children,

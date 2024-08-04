@@ -1,5 +1,5 @@
 import { FCX } from 'react';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { GoogleButtonType } from './schema';
 import { SocialIcon } from '@/components/ui-parts';
 import style from './style.module.scss';
