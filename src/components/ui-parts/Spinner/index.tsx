@@ -2,7 +2,7 @@ import { FCX } from 'react';
 import Image from 'next/image';
 import style from './style.module.scss';
 import { SpinnerType } from './schema';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 const Spinner: FCX<SpinnerType> = ({ size = 's', className }) => {
 	return (

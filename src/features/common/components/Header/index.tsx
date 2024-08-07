@@ -1,7 +1,7 @@
 'use client';
 
 import { FCX } from 'react';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import style from './style.module.scss';
 import { CustomImaga } from '@/components/ui-parts';
 import { useAuthStore } from '@/stores';

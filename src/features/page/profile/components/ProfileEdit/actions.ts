@@ -1,18 +1,9 @@
 'use server';
 import { createClient } from '@/lib/supabase/server';
+import { customFetch } from 'src/lib/customFetch';
 
-// export const formAction = async () => {
 export const formAction = async (formData: FormData) => {
 	try {
-		// const test = formData.get('test');
-		// console.log(test);
-		// const res = fetch('http://localhost:3000/api/user', {
-		// 	cache: 'force-cache',
-		// 	next: { revalidate: false },
-		// 	method: 'GET',
-		// });
-		// console.log((await res).json());
-
 		const supabase = createClient();
 		const {
 			data: { user },
@@ -21,13 +12,29 @@ export const formAction = async (formData: FormData) => {
 		const body = {
 			name: formData.get('name'),
 		};
-		await fetch(`http://localhost:3000/api/user/${user.id}`, {
-			cache: 'no-cache',
-			// next: { revalidate: false },
-			method: 'PUT',
-			body: JSON.stringify(body),
-		});
-		// console.log(await res.json());
-		// const test = await res.json();
-	} catch (e) {}
+
+		try {
+			await customFetch({
+				url: `http://localhost:3000/api/user/${user.id}`,
+				method: 'PUT',
+				body: body,
+				cache: 'no-cache',
+				// next: { revalidate: false },
+			});
+			return {
+				success: true,
+				message: 'データの更新に成功しました。',
+			};
+		} catch (e) {
+			return {
+				success: false,
+				message: e.message,
+			};
+		}
+	} catch (e) {
+		return {
+			success: false,
+			message: '予期せぬエラー発生',
+		};
+	}
 };

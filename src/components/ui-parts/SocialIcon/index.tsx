@@ -1,5 +1,5 @@
 import { FCX } from 'react';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { SocialIconType } from './schema';
 import style from './style.module.scss';
 

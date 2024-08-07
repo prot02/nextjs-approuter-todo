@@ -1,7 +1,8 @@
 .btn {
-	display: block;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
 	width: fit-content;
-	min-width: 80px;
 	max-width: 100%;
 	text-align: center;
 	padding: 8px 12px;
@@ -12,5 +13,14 @@
 
 	&:hover {
 		opacity: 0.8;
+	}
+
+	&.disabled {
+		pointer-events: none;
+		opacity: 0.8;
+	}
+
+	& > .spinner {
+		width: 20px;
 	}
 }

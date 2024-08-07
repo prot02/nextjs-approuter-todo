@@ -1,4 +1,4 @@
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { FCX } from 'react';
 import style from './style.module.scss';
 import { InputType } from './schema';

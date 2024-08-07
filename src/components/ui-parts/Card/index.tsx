@@ -1,4 +1,4 @@
-import classNames from 'classNames';
+import classNames from 'classnames';
 import style from './style.module.scss';
 
 const Card: React.FCX = ({ children, className }) => {

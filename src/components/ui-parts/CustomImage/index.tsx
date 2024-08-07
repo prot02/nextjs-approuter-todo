@@ -2,7 +2,7 @@ import { FCX } from 'react';
 import Image from 'next/image';
 import style from './style.module.scss';
 import { CustomImageType } from './schema';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 const CustomImage: FCX<CustomImageType> = ({ src, alt, className }) => {
 	return (
