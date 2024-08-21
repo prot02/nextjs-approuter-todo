@@ -1,4 +1,4 @@
-export type customFetchParamType = {
+export type CustomFetchParamType = {
 	url: RequestInfo;
 	method: string;
 	body?: object;
@@ -6,9 +6,4 @@ export type customFetchParamType = {
 	next?: NextFetchRequestConfig | undefined;
 	params?: URLSearchParams;
 	headers?: HeadersInit;
-};
-
-export type customFetchResponseType = {
-	body: JSON;
-	status: number;
 };

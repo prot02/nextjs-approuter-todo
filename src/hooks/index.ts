@@ -1,2 +1,3 @@
 export { useAuth } from './useAuth';
-export { useButtonDisabled } from './useButtonDisabled';
+export { useDisable } from './useDisable';
+export { useSetAuthStoreData } from './useSetAuthStoreData';

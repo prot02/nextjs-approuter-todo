@@ -1,7 +1,7 @@
 import 'src/style/globals.css';
 import { notoSansJP } from '@/style/fonts';
 import classNames from 'classnames';
-import { ToastProvider } from 'src/components/ui-elements';
+import { ToastProvider, TanstackProvider } from 'src/features/common';
 
 export default function RootLayout({
 	children,
@@ -11,9 +11,11 @@ export default function RootLayout({
 	return (
 		<html lang="ja">
 			<body className={classNames(notoSansJP.variable)}>
-				<ToastProvider>
-					<main>{children}</main>
-				</ToastProvider>
+				<TanstackProvider>
+					<ToastProvider>
+						<main>{children}</main>
+					</ToastProvider>
+				</TanstackProvider>
 			</body>
 		</html>
 	);

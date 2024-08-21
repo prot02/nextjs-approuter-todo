@@ -1,4 +1,4 @@
-import { customFetchParamType, customFetchResponseType } from './schema';
+import { CustomFetchParamType } from './schema';
 
 class CustomFetchError extends Error {
 	status: number;
@@ -16,7 +16,7 @@ export async function customFetch({
 	next,
 	params,
 	headers,
-}: customFetchParamType): Promise<customFetchResponseType> {
+}: CustomFetchParamType) {
 	const query = new URLSearchParams(params);
 	const res = await fetch(`${url}?${query.toString()}`, {
 		cache: cache,
@@ -39,5 +39,5 @@ export async function customFetch({
 		throw new CustomFetchError(responseBody.message, res.status);
 	}
 
-	return { body: responseBody, status: res.status };
+	return { data: responseBody, status: res.status };
 }
