@@ -9,7 +9,6 @@ const ProfileEdit: FCX = ({ className }) => {
 
 	return (
 		<div className={className}>
-			{JSON.stringify(formState)}
 			<form action={formAction}>
 				<div className="flex gap-x-[24px] mb-[36px]">
 					<CustomImaga
@@ -24,6 +23,14 @@ const ProfileEdit: FCX = ({ className }) => {
 						</div>
 						<div>
 							<Label text="ユーザー名" />
+							{formState?.errors?.name?.length > 0 &&
+								formState.errors.name.map((row, index) => {
+									return (
+										<div key={index} className="text-red-01">
+											{row}
+										</div>
+									);
+								})}
 							<Input name="name" defaultValue={profile.name} />
 						</div>
 					</div>

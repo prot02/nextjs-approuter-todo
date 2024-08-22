@@ -25,7 +25,7 @@ export const useProfileEdit = () => {
 		formData: FormData
 	): Promise<profileEditFormErrorType> => {
 		let res = null;
-		disableOnProcessing({
+		await disableOnProcessing({
 			key: 'submitAction',
 			minDurationSeconds: 1,
 			action: async () => {
@@ -34,7 +34,6 @@ export const useProfileEdit = () => {
 				setAuthStoreData();
 			},
 		});
-		console.log(res);
 		return res;
 	};
 

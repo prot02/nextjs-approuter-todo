@@ -20,7 +20,7 @@ export const updateUserInfo = async (state: profileEditFormErrorType, formData: 
 			const errors = {
 				isSuccess: false,
 				message: 'バリデーションエラー',
-				errors: {},
+				errors: validateResult.error.flatten().fieldErrors,
 			};
 			return errors;
 		}
@@ -41,11 +41,12 @@ export const updateUserInfo = async (state: profileEditFormErrorType, formData: 
 			return {
 				isSuccess: false,
 				message: e.message,
+				errors: {},
 			};
 		}
 	} catch (e) {
 		return {
-			success: false,
+			isSuccess: false,
 			message: '予期せぬエラー発生',
 			errors: {},
 		};

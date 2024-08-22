@@ -11,7 +11,7 @@ export type profileEditFormErrorType = {
 	isSuccess: boolean;
 	message: string;
 	errors?: {
-		name: string[];
+		name?: string[];
 	};
 };
 
