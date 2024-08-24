@@ -3,5 +3,6 @@ export type ButtonType = {
 	buttonType?: 'button' | 'submit';
 	text?: string;
 	disabled?: boolean;
+	prosessing?: boolean;
 	onClick?: () => void;
 };

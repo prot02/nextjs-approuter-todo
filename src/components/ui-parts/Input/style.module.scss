@@ -5,7 +5,7 @@
 
 	& > .input {
 		border-radius: 6px;
-		border: 1px solid theme("colors.gray.02");
+		border: 1px solid theme("colors.custom.gray.02");
 		appearance: none;
 		-webkit-appearance: none;
 		-moz-appearance: none;
@@ -25,11 +25,11 @@
 
 		&:focus {
 			outline: 0;
-			border: 2px solid theme("colors.primary");
+			border: 2px solid theme("colors.custom.primary");
 		}
 
 		&::placeholder {
-			color: theme("colors.gray.02");
+			color: theme("colors.custom.gray.02");
 		}
 	}
 }

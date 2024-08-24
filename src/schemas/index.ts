@@ -1,1 +1,2 @@
-export type { AuthUserType } from './authScema';
+export type { AuthUserType } from './authSchema';
+export type { PropSchema } from './propSchema';

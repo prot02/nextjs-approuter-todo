@@ -26,6 +26,7 @@ export const updateUserInfo = async (state: profileEditFormErrorType, formData: 
 		}
 
 		try {
+			// 実際はここでDB操作を行うが今回はAPIをたたく
 			const { status } = await updateUser({
 				user_id: user.id,
 				data: body,

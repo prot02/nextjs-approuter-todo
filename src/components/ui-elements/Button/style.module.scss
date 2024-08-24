@@ -6,8 +6,8 @@
 	max-width: 100%;
 	text-align: center;
 	padding: 8px 12px;
-	color: theme("colors.white.01");
-	background-color: theme("colors.primary");
+	color: theme("colors.custom.white.01");
+	background-color: theme("colors.custom.primary");
 	border-radius: 6px;
 	cursor: pointer;
 
@@ -15,9 +15,10 @@
 		opacity: 0.8;
 	}
 
-	&.disabled {
+	&.disabled,
+	&.prosessing {
 		pointer-events: none;
-		opacity: 0.8;
+		opacity: 0.6;
 	}
 
 	& > .spinner {

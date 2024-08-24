@@ -1,11 +1,11 @@
 import { Card, Spinner } from '@/components/ui-parts';
-import { ProfileEdit } from '@/features/page/profile';
+import { ProfileEditServerAction } from '@/features/page/profile';
 import { Suspense } from 'react';
 
 export default async function Profile() {
 	return (
 		<Card className="w-[640px] mx-auto">
-			<div className="text-xl font-bold mb-[20px]">プロフィール編集</div>
+			<div className="text-xl font-bold mb-[20px]">プロフィール編集(server action版)</div>
 			<Suspense
 				fallback={
 					<div className="flex justify-center">
@@ -13,7 +13,7 @@ export default async function Profile() {
 					</div>
 				}
 			>
-				{<ProfileEdit />}
+				{<ProfileEditServerAction />}
 			</Suspense>
 		</Card>
 	);

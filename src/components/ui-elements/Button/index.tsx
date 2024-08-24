@@ -10,15 +10,21 @@ const Button: FCX<ButtonType> = ({
 	className,
 	text,
 	disabled,
+	prosessing,
 	onClick,
 }) => {
 	return (
 		<Element
-			className={classNames(style.btn, { [style.disabled]: disabled }, className)}
+			className={classNames(
+				style.btn,
+				{ [style.disabled]: disabled },
+				{ [style.prosessing]: prosessing },
+				className
+			)}
 			onClick={onClick}
 			type={Element === 'button' ? buttonType : undefined}
 		>
-			{disabled && <Spinner className={style.spinner} />}
+			{prosessing && <Spinner className={style.spinner} />}
 			{text}
 		</Element>
 	);

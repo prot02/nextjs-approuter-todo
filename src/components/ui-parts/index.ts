@@ -3,6 +3,7 @@ import CustomImaga from './CustomImage';
 import SocialIcon from './SocialIcon';
 import Spinner from './Spinner';
 import Input from './Input';
-import Label from './Label';
+import FormLabel from './FormLabel';
+import FormError from './FormError';
 
-export { Card, CustomImaga, SocialIcon, Spinner, Input, Label };
+export { Card, CustomImaga, SocialIcon, Spinner, Input, FormLabel, FormError };

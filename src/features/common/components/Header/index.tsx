@@ -27,8 +27,17 @@ const Header: FCX = ({ className }) => {
 							</Link>
 						</li>
 						<li>
-							<Link href="/profile" className={style.item}>
+							<Link href="/profile/server-action" className={style.item}>
 								プロフィール編集
+								<br />
+								(server action)
+							</Link>
+						</li>
+						<li>
+							<Link href="/profile/client" className={style.item}>
+								プロフィール編集
+								<br />
+								(react-hook-form)
 							</Link>
 						</li>
 						<li>

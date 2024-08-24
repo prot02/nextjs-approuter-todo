@@ -1,3 +1,4 @@
-import ProfileEdit from './components/ProfileEdit';
+import ProfileEditServerAction from './components/ProfileEditServerAction';
+import ProfileEditReactHookForm from './components/ProfileEditReactHookForm';
 
-export { ProfileEdit };
+export { ProfileEditServerAction, ProfileEditReactHookForm };

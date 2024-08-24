@@ -4,9 +4,9 @@
 	align-items: center;
 	padding: 10px 20px;
 	width: 100%;
-	color: theme("colors.white.01");
-	border-bottom: 1px solid theme("colors.gray.02");
-	background-color: theme("colors.primary");
+	color: theme("colors.custom.white.01");
+	border-bottom: 1px solid theme("colors.custom.gray.02");
+	background-color: theme("colors.custom.primary");
 
 	& > .title {
 		font-size: theme("fontSize.2xl");
@@ -42,15 +42,15 @@
 			padding-top: 4px;
 
 			& > ul {
-				background-color: theme("colors.white.01");
+				background-color: theme("colors.custom.white.01");
 				border-radius: 6px;
 				overflow: hidden;
-				border: 1px solid theme("colors.gray.02");
+				border: 1px solid theme("colors.custom.gray.02");
 				padding: 12px 0;
 
 				& > li {
-					color: theme("colors.black.02");
-					border-bottom: 1px solid theme("colors.gray.02");
+					color: theme("colors.custom.black.02");
+					border-bottom: 1px solid theme("colors.custom.gray.02");
 					&:last-child {
 						border-bottom: initial;
 					}
@@ -58,7 +58,7 @@
 						display: block;
 						padding: 12px;
 						&:hover {
-							background-color: theme("colors.gray.02" / 30%);
+							background-color: theme("colors.custom.gray.02" / 30%);
 						}
 					}
 				}

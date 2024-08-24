@@ -1,10 +1,10 @@
 'use client';
 import { FCX } from 'react';
-import { Input, Label, CustomImaga } from '@/components/ui-parts';
+import { Input, FormLabel, FormError, CustomImaga } from '@/components/ui-parts';
 import { Button } from '@/components/ui-elements';
 import { useProfileEdit } from './hook';
 
-const ProfileEdit: FCX = ({ className }) => {
+const ProfileEditReactHookForm: FCX = ({ className }) => {
 	const { profile, formAction, isSubmitDisable, formState } = useProfileEdit();
 
 	return (
@@ -18,18 +18,14 @@ const ProfileEdit: FCX = ({ className }) => {
 
 					<div className="grow">
 						<div className="mb-[24px]">
-							<Label text="メールアドレス" />
+							<FormLabel text="メールアドレス" />
 							<div>{profile.email}</div>
 						</div>
 						<div>
-							<Label text="ユーザー名" />
+							<FormLabel text="ユーザー名" />
 							{formState?.errors?.name?.length > 0 &&
 								formState.errors.name.map((row, index) => {
-									return (
-										<div key={index} className="text-red-01">
-											{row}
-										</div>
-									);
+									return <FormError key={index} text={row} />;
 								})}
 							<Input name="name" defaultValue={profile.name} />
 						</div>
@@ -37,7 +33,7 @@ const ProfileEdit: FCX = ({ className }) => {
 				</div>
 				<Button
 					Element="button"
-					disabled={isSubmitDisable}
+					prosessing={isSubmitDisable}
 					buttonType="submit"
 					className="mx-auto w-[120px]"
 					text="更新"
@@ -46,4 +42,4 @@ const ProfileEdit: FCX = ({ className }) => {
 		</div>
 	);
 };
-export default ProfileEdit;
+export default ProfileEditReactHookForm;
