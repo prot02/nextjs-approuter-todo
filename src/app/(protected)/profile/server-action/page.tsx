@@ -2,7 +2,7 @@ import { Card, Spinner } from '@/components/ui-parts';
 import { ProfileEditServerAction } from '@/features/page/profile';
 import { Suspense } from 'react';
 
-export default async function Profile() {
+export default function Profile() {
 	return (
 		<Card className="w-[640px] mx-auto">
 			<div className="text-xl font-bold mb-[20px]">プロフィール編集(server action版)</div>

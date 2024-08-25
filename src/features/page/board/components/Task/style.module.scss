@@ -1,0 +1,27 @@
+.task {
+	& > .input {
+		cursor: pointer;
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+
+		display: block;
+		width: 100%;
+		padding: 12px;
+		border: 1px solid theme("colors.custom.gray.02");
+		border-radius: 10px;
+		overflow: hidden;
+		background: #fff;
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		-moz-appearance: textfield;
+
+		&:focus {
+			outline: 0;
+		}
+	}
+}
