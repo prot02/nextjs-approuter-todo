@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
 	// 認証が不要なページ一覧
 	const publicRoutes = ['/signin', '/api/auth/callback'];
 	// 認証が必要なページ
-	const privateRoutes = ['/board', '/profile'];
+	const privateRoutes = ['/board', '/profile/server-action', '/profile/client'];
 
 	// ルートにアクセスされた場合はログインページへ遷移
 	if (pathname === '/') return NextResponse.redirect(new URL(PROTECTED_HOME, request.url));

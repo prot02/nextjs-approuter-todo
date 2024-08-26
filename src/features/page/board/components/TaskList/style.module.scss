@@ -1,0 +1,41 @@
+.task_list {
+	padding: 12px;
+	background-color: theme("colors.custom.gray.04");
+	border-radius: 10px;
+	width: 320px;
+
+	& > .input {
+		cursor: pointer;
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		display: block;
+		width: 100%;
+		overflow: hidden;
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		-moz-appearance: textfield;
+		&:focus {
+			outline: 0;
+		}
+
+		font-size: theme("fontSize.xl");
+		font-weight: 700;
+		margin-bottom: 8px;
+	}
+
+	& > .title {
+		font-size: theme("fontSize.xl");
+		font-weight: 700;
+		margin-bottom: 6px;
+	}
+
+	& > .list_wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+}

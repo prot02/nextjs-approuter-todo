@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 export default function Profile() {
 	return (
 		<Card className="w-[640px] mx-auto">
-			<div className="text-xl font-bold mb-[20px]">プロフィール編集(server action版)</div>
+			<div className="text-2xl font-bold mb-[20px]">プロフィール編集(server action版)</div>
 			<Suspense
 				fallback={
 					<div className="flex justify-center">

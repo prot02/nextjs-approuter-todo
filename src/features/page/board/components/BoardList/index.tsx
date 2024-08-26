@@ -11,26 +11,52 @@ import {
 	useSensors,
 } from '@dnd-kit/core';
 import {
-	arrayMove,
-	SortableContext,
+	// arrayMove,
+	// SortableContext,
 	sortableKeyboardCoordinates,
-	verticalListSortingStrategy,
+	// verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import Task from '../Task';
+import { TaskList } from '@/features/page/board';
+import { TaskListType } from '@/features/page/board/schemas';
+import classNames from 'classnames';
 
 const BoardList: FCX = ({ className }) => {
-	const [tasks, setTasks] = useState([
+	const [tasks] = useState<TaskListType[]>([
 		{
 			id: 1,
-			title: 'aaaa',
+			title: 'proccess',
+			tasks: [
+				{
+					id: 1,
+					title: 'aaaa',
+				},
+				{
+					id: 2,
+					title: 'bbb',
+				},
+				{
+					id: 3,
+					title: 'ccc',
+				},
+			],
 		},
 		{
 			id: 2,
-			title: 'bbb',
-		},
-		{
-			id: 3,
-			title: 'ccc',
+			title: 'done',
+			tasks: [
+				{
+					id: 4,
+					title: 'ddd',
+				},
+				{
+					id: 5,
+					title: 'eee',
+				},
+				{
+					id: 6,
+					title: 'fff',
+				},
+			],
 		},
 	]);
 
@@ -55,21 +81,31 @@ const BoardList: FCX = ({ className }) => {
 		const { active, over } = event;
 		if (active.id === over.id) return;
 
-		console.log(active);
-
-		setTasks((tasks) => {
-			const nowPos = tasks.findIndex((task) => task.id === active.id);
-			const newPos = tasks.findIndex((task) => task.id === over.id);
-			return arrayMove(tasks, nowPos, newPos);
-		});
+		// setTasks((tasks) => {
+		// 	const nowPos = tasks.findIndex((task) => task.id === active.id);
+		// 	const newPos = tasks.findIndex((task) => task.id === over.id);
+		// 	return arrayMove(tasks, nowPos, newPos);
+		// });
 	};
 	return (
 		<DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd} sensors={sensors}>
-			<SortableContext items={tasks} strategy={verticalListSortingStrategy}>
-				{tasks.map((task) => {
-					return <Task key={task.id} id={task.id} title={task.title} />;
+			<div className={classNames('flex gap-[48px]', className)}>
+				{tasks.map((taskList) => {
+					return (
+						<TaskList
+							key={taskList.id}
+							title={taskList.title}
+							tasks={taskList.tasks}
+							id={taskList.id}
+						/>
+					);
 				})}
-			</SortableContext>
+			</div>
+			{/* <SortableContext items={tasks} strategy={verticalListSortingStrategy}> */}
+			{/* {tasks.map((task) => {
+					return <TaskItem key={task.id} id={task.id} title={task.title} />;
+				})} */}
+			{/* </SortableContext> */}
 		</DndContext>
 	);
 };
