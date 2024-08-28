@@ -1,5 +1,5 @@
 'use client';
-import { FCX, useState } from 'react';
+import { FCX, useEffect, useState } from 'react';
 import {
 	DndContext,
 	DragEndEvent,
@@ -20,64 +20,25 @@ import {
 import { Board } from '@/features/page/board';
 import { BoardType } from '@/features/page/board/schemas';
 import classNames from 'classnames';
+import { useAuthStore } from 'src/stores';
+import { fetchTask } from 'src/lib/api/task';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 const BoardList: FCX = ({ className }) => {
-	const [bords, setBords] = useState<BoardType[]>([
-		{
-			id: 'board1',
-			title: '未着手',
-			tasks: [
-				{
-					id: 'task1',
-					title: 'aaaa',
-				},
-				{
-					id: 'task2',
-					title: 'bbb',
-				},
-				{
-					id: 'task3',
-					title: 'ccc',
-				},
-			],
+	const auth = useAuthStore((state) => state.auth);
+
+	const { data: boardsData } = useSuspenseQuery({
+		queryKey: [],
+		queryFn: () => {
+			return !!auth?.id ? fetchTask({ user_id: auth.id }) : null;
 		},
-		{
-			id: 'board2',
-			title: '作業中',
-			tasks: [
-				{
-					id: 'task4',
-					title: 'aaaa',
-				},
-				{
-					id: 'task5',
-					title: 'bbb',
-				},
-				{
-					id: 'task6',
-					title: 'ccc',
-				},
-			],
-		},
-		{
-			id: 'board3',
-			title: '完了',
-			tasks: [
-				{
-					id: 'task7',
-					title: 'ddd',
-				},
-				{
-					id: 'task8',
-					title: 'eee',
-				},
-				{
-					id: 'task9',
-					title: 'fff',
-				},
-			],
-		},
-	]);
+		select: (data) => data.data.tasks.data,
+	});
+	const [boards, setBoards] = useState<BoardType[]>();
+
+	useEffect(() => {
+		setBoards(boardsData);
+	}, [boardsData]);
 
 	const sensors = useSensors(
 		useSensor(MouseSensor, {
@@ -109,7 +70,7 @@ const BoardList: FCX = ({ className }) => {
 			return;
 		}
 
-		setBords((boards) => {
+		setBoards((boards) => {
 			const boardIdx = boards.findIndex((board) => String(board.id) === String(nowBoardId));
 			const nowPos = boards[boardIdx].tasks.findIndex((task) => task.id === active.id);
 			const newPos = boards[boardIdx].tasks.findIndex((task) => task.id === over.id);
@@ -135,7 +96,7 @@ const BoardList: FCX = ({ className }) => {
 
 		if (!nowBoardId || !newBoardId || nowBoardId === newBoardId) return;
 
-		setBords((boards) => {
+		setBoards((boards) => {
 			const nowBoardIdx = boards.findIndex((board) => String(board.id) === String(nowBoardId));
 			const newBoardIdx = boards.findIndex((board) => String(board.id) === String(newBoardId));
 
@@ -143,13 +104,12 @@ const BoardList: FCX = ({ className }) => {
 			const newBoardTasks = boards[newBoardIdx]?.tasks;
 			const nowTaskIndex = nowBoardTasks?.findIndex((task) => task.id === active.id);
 
-			const boards2 = boards;
-			return boards2.map((board) => {
-				if (board.id === boards2[nowBoardIdx].id) {
+			return boards.map((board) => {
+				if (board.id === boards[nowBoardIdx].id) {
 					// ドラッグ中のアイテムを元のカラムから削除
 					board.tasks = nowBoardTasks.filter((task) => task.id !== active.id);
 					return board;
-				} else if (board.id === boards2[newBoardIdx]?.id) {
+				} else if (board.id === boards[newBoardIdx]?.id) {
 					if (nowTaskIndex === -1) return board;
 					board.tasks = [...newBoardTasks, nowBoardTasks[nowTaskIndex]];
 					return board;
@@ -160,6 +120,7 @@ const BoardList: FCX = ({ className }) => {
 			});
 		});
 	};
+
 	return (
 		<DndContext
 			collisionDetection={closestCorners}
@@ -168,8 +129,8 @@ const BoardList: FCX = ({ className }) => {
 			sensors={sensors}
 		>
 			<div className={classNames('flex gap-[48px] items-start', className)}>
-				{bords.map((bord) => {
-					return <Board key={bord.id} title={bord.title} tasks={bord.tasks} id={bord.id} />;
+				{boards?.map((board) => {
+					return <Board key={board.id} title={board.title} tasks={board.tasks} id={board.id} />;
 				})}
 			</div>
 		</DndContext>
