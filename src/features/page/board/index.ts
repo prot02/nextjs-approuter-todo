@@ -1,5 +1,5 @@
 import BoardList from './components/BoardList';
 import TaskItem from './components/TaskItem';
-import TaskList from './components/TaskList';
+import Board from './components/Board';
 
-export { BoardList, TaskItem, TaskList };
+export { BoardList, TaskItem, Board };

@@ -38,4 +38,14 @@
 		flex-direction: column;
 		gap: 6px;
 	}
+
+	& > .task_add {
+		cursor: pointer;
+		text-align: center;
+		margin-top: 24px;
+		padding: 6px;
+		border-radius: 10px;
+		color: theme("colors.custom.white.01");
+		background-color: theme("colors.custom.primary");
+	}
 }

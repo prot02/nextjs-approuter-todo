@@ -9,7 +9,7 @@ import style from './style.module.scss';
 const TaskItem: FCX<TaskItemType> = ({ className, id, title }) => {
 	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 	const dndStyle = {
-		transition,
+		transition: transition,
 		transform: CSS.Transform.toString(transform),
 	};
 	return (

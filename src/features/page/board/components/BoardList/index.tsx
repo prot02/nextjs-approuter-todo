@@ -3,6 +3,7 @@ import { FCX, useState } from 'react';
 import {
 	DndContext,
 	DragEndEvent,
+	DragOverEvent,
 	KeyboardSensor,
 	MouseSensor,
 	TouchSensor,
@@ -11,49 +12,67 @@ import {
 	useSensors,
 } from '@dnd-kit/core';
 import {
-	// arrayMove,
+	arrayMove,
 	// SortableContext,
 	sortableKeyboardCoordinates,
 	// verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { TaskList } from '@/features/page/board';
-import { TaskListType } from '@/features/page/board/schemas';
+import { Board } from '@/features/page/board';
+import { BoardType } from '@/features/page/board/schemas';
 import classNames from 'classnames';
 
 const BoardList: FCX = ({ className }) => {
-	const [tasks] = useState<TaskListType[]>([
+	const [bords, setBords] = useState<BoardType[]>([
 		{
-			id: 1,
-			title: 'proccess',
+			id: 'board1',
+			title: '未着手',
 			tasks: [
 				{
-					id: 1,
+					id: 'task1',
 					title: 'aaaa',
 				},
 				{
-					id: 2,
+					id: 'task2',
 					title: 'bbb',
 				},
 				{
-					id: 3,
+					id: 'task3',
 					title: 'ccc',
 				},
 			],
 		},
 		{
-			id: 2,
-			title: 'done',
+			id: 'board2',
+			title: '作業中',
 			tasks: [
 				{
-					id: 4,
+					id: 'task4',
+					title: 'aaaa',
+				},
+				{
+					id: 'task5',
+					title: 'bbb',
+				},
+				{
+					id: 'task6',
+					title: 'ccc',
+				},
+			],
+		},
+		{
+			id: 'board3',
+			title: '完了',
+			tasks: [
+				{
+					id: 'task7',
 					title: 'ddd',
 				},
 				{
-					id: 5,
+					id: 'task8',
 					title: 'eee',
 				},
 				{
-					id: 6,
+					id: 'task9',
 					title: 'fff',
 				},
 			],
@@ -79,33 +98,80 @@ const BoardList: FCX = ({ className }) => {
 
 	const handleDragEnd = (event: DragEndEvent) => {
 		const { active, over } = event;
-		if (active.id === over.id) return;
 
-		// setTasks((tasks) => {
-		// 	const nowPos = tasks.findIndex((task) => task.id === active.id);
-		// 	const newPos = tasks.findIndex((task) => task.id === over.id);
-		// 	return arrayMove(tasks, nowPos, newPos);
-		// });
+		// taskがあるときはtaskの、無いときはboardのidを返すためここで調整している
+		const nowBoardId = active?.data?.current
+			? active?.data?.current.sortable?.containerId
+			: active.id;
+		const newBoardId = over?.data?.current ? over?.data?.current.sortable?.containerId : over.id;
+
+		if (!nowBoardId || !newBoardId || nowBoardId !== newBoardId) {
+			return;
+		}
+
+		setBords((boards) => {
+			const boardIdx = boards.findIndex((board) => String(board.id) === String(nowBoardId));
+			const nowPos = boards[boardIdx].tasks.findIndex((task) => task.id === active.id);
+			const newPos = boards[boardIdx].tasks.findIndex((task) => task.id === over.id);
+
+			const newBoards = [...boards];
+			newBoards[boardIdx] = {
+				...newBoards[boardIdx],
+				tasks: arrayMove([...newBoards[boardIdx].tasks], nowPos, newPos),
+			};
+
+			return newBoards;
+		});
+	};
+
+	const handleDragOver = (event: DragOverEvent) => {
+		const { active, over } = event;
+
+		if (!active || !over) return;
+		const nowBoardId = active?.data?.current
+			? active?.data?.current.sortable?.containerId
+			: active.id;
+		const newBoardId = over?.data?.current ? over?.data?.current.sortable?.containerId : over.id;
+
+		if (!nowBoardId || !newBoardId || nowBoardId === newBoardId) return;
+
+		setBords((boards) => {
+			const nowBoardIdx = boards.findIndex((board) => String(board.id) === String(nowBoardId));
+			const newBoardIdx = boards.findIndex((board) => String(board.id) === String(newBoardId));
+
+			const nowBoardTasks = boards[nowBoardIdx]?.tasks;
+			const newBoardTasks = boards[newBoardIdx]?.tasks;
+			const nowTaskIndex = nowBoardTasks?.findIndex((task) => task.id === active.id);
+
+			const boards2 = boards;
+			return boards2.map((board) => {
+				if (board.id === boards2[nowBoardIdx].id) {
+					// ドラッグ中のアイテムを元のカラムから削除
+					board.tasks = nowBoardTasks.filter((task) => task.id !== active.id);
+					return board;
+				} else if (board.id === boards2[newBoardIdx]?.id) {
+					if (nowTaskIndex === -1) return board;
+					board.tasks = [...newBoardTasks, nowBoardTasks[nowTaskIndex]];
+					return board;
+				} else {
+					// その他のカラムはそのまま返す
+					return board;
+				}
+			});
+		});
 	};
 	return (
-		<DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd} sensors={sensors}>
-			<div className={classNames('flex gap-[48px]', className)}>
-				{tasks.map((taskList) => {
-					return (
-						<TaskList
-							key={taskList.id}
-							title={taskList.title}
-							tasks={taskList.tasks}
-							id={taskList.id}
-						/>
-					);
+		<DndContext
+			collisionDetection={closestCorners}
+			onDragEnd={handleDragEnd}
+			onDragOver={handleDragOver}
+			sensors={sensors}
+		>
+			<div className={classNames('flex gap-[48px] items-start', className)}>
+				{bords.map((bord) => {
+					return <Board key={bord.id} title={bord.title} tasks={bord.tasks} id={bord.id} />;
 				})}
 			</div>
-			{/* <SortableContext items={tasks} strategy={verticalListSortingStrategy}> */}
-			{/* {tasks.map((task) => {
-					return <TaskItem key={task.id} id={task.id} title={task.title} />;
-				})} */}
-			{/* </SortableContext> */}
 		</DndContext>
 	);
 };

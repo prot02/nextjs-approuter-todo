@@ -1,2 +1,2 @@
 export type { TaskItemType } from './taskItem.schema';
-export type { TaskListType } from './taskList.schema';
+export type { BoardType } from './board.schema';
