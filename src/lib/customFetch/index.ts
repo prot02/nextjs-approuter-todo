@@ -31,7 +31,7 @@ export async function customFetch({
 	try {
 		responseBody = await res.json();
 	} catch {
-		throw new CustomFetchError('レスポンスの解析失敗', res.status);
+		throw new CustomFetchError(res.statusText, res.status);
 	}
 
 	// レスポンスがエラー

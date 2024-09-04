@@ -1,4 +1,44 @@
 .task {
+	position: relative;
+
+	& > .close_wrap {
+		position: absolute;
+		width: 24px;
+		height: 24px;
+		background-color: theme("colors.custom.gray.05");
+		top: 50%;
+		right: 12px;
+		transform: translateY(-50%);
+		border-radius: 9999px;
+
+		& > .close {
+			width: 100%;
+			height: 100%;
+			position: relative;
+
+			&:before {
+				content: "";
+				position: absolute;
+				height: 1px;
+				width: 70%;
+				top: 50%;
+				left: 50%;
+				transform: translateY(50%) translateX(-50%) rotate(45deg);
+				background-color: #fff;
+			}
+			&:after {
+				content: "";
+				position: absolute;
+				height: 1px;
+				width: 70%;
+				top: 50%;
+				left: 50%;
+				transform: translateY(50%) translateX(-50%) rotate(-45deg);
+				background-color: #fff;
+			}
+		}
+	}
+
 	& > .input {
 		cursor: pointer;
 		appearance: none;
@@ -8,6 +48,7 @@
 		display: block;
 		width: 100%;
 		padding: 12px;
+		padding-right: 48px;
 		border: 1px solid theme("colors.custom.gray.02");
 		border-radius: 10px;
 		overflow: hidden;

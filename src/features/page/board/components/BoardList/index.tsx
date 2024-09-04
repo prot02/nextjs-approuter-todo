@@ -19,22 +19,30 @@ import {
 } from '@dnd-kit/sortable';
 import { Board } from '@/features/page/board';
 import { BoardType } from '@/features/page/board/schemas';
+import { useBoardStore } from '@/features/page/board/stores/boardStore';
 import classNames from 'classnames';
-import { useAuthStore } from 'src/stores';
-import { fetchTask } from 'src/lib/api/task';
-import { useSuspenseQuery } from '@tanstack/react-query';
+// import { useAuthStore } from 'src/stores';
+// import { fetchTask } from 'src/lib/api/task';
+// import { useSuspenseQuery } from '@tanstack/react-query';
 
 const BoardList: FCX = ({ className }) => {
-	const auth = useAuthStore((state) => state.auth);
+	const boardsData = useBoardStore((state) => state.boards);
+	const boardsRefetch = useBoardStore((state) => state.refetch);
+	const boardsTaskAllUpdate = useBoardStore((state) => state.allUpdateTask);
 
-	const { data: boardsData } = useSuspenseQuery({
-		queryKey: [],
-		queryFn: () => {
-			return !!auth?.id ? fetchTask({ user_id: auth.id }) : null;
-		},
-		select: (data) => data.data.tasks.data,
-	});
-	const [boards, setBoards] = useState<BoardType[]>();
+	// const { data: boardsData } = useSuspenseQuery({
+	// 	queryKey: [],
+	// 	queryFn: () => {
+	// 		return !!auth?.id ? fetchTask() : null;
+	// 	},
+	// 	select: (data) => data.data.tasks.data,
+	// });
+
+	const [boards, setBoards] = useState<BoardType[]>([]);
+
+	useEffect(() => {
+		boardsRefetch();
+	}, [boardsRefetch]);
 
 	useEffect(() => {
 		setBoards(boardsData);
@@ -80,6 +88,12 @@ const BoardList: FCX = ({ className }) => {
 				...newBoards[boardIdx],
 				tasks: arrayMove([...newBoards[boardIdx].tasks], nowPos, newPos),
 			};
+
+			// 全て更新処理
+			const handleUpdate = async () => {
+				await boardsTaskAllUpdate({ boards: newBoards });
+			};
+			handleUpdate();
 
 			return newBoards;
 		});
