@@ -27,6 +27,24 @@ export async function GET(request: Request) {
 					icon_url: icon_url,
 				},
 			]);
+
+			await supabase.from('boards').insert([
+				{
+					user_id: userId,
+					title: '未着手',
+					sort: 1,
+				},
+				{
+					user_id: userId,
+					title: '作業中',
+					sort: 2,
+				},
+				{
+					user_id: userId,
+					title: '完了',
+					sort: 3,
+				},
+			]);
 		}
 	}
 
