@@ -2,6 +2,18 @@ import 'src/style/globals.css';
 import { notoSansJP } from '@/style/fonts';
 import classNames from 'classnames';
 import { ToastProvider, TanstackProvider } from 'src/features/common';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	robots: {
+		index: false,
+		follow: false,
+		googleBot: {
+			index: false,
+			follow: false,
+		},
+	},
+};
 
 export default function RootLayout({
 	children,
