@@ -4,6 +4,6 @@ export type CustomFetchParamType = {
 	body?: object;
 	cache?: RequestCache;
 	next?: NextFetchRequestConfig | undefined;
-	params?: URLSearchParams;
+	params?: string | Record<string, string> | string[][] | URLSearchParams;
 	headers?: HeadersInit;
 };
