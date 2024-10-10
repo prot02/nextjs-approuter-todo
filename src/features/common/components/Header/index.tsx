@@ -14,7 +14,7 @@ const Header: FCX = ({ className }) => {
 
 	return (
 		<div className={classNames(className, style.header)}>
-			<div className={style.title}>Live Todo</div>
+			<div className={style.title}>Nextjs Approuter Todo</div>
 			<div className={style.profile}>
 				<CustomImaga className={style.icon} src={auth?.icon_url} />
 				<div className={style.name}>{auth?.name}</div>
